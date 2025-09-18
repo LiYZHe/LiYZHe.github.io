@@ -18,7 +18,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         # 注入环境变量供ssh-deploy使用
         env:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.THEME_REPO_TOKEN }}
           publish_dir: ./dist
 
 
