@@ -1,4 +1,4 @@
-name: deploy_meta2d
+name: 测试打包
 on: 
   push:
     branches:
@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: install nodejs
+      - name: 安装nodejs
         uses: actions/setup-node@2.5.1
         with:
           node-version: "22.12.0"
-      - name: install deps
+      - name: 安装依赖
         run: npm install
-      - name: build app
+      - name: 打包构建
         run: npm run build
       - name: DeploytoGithubpages
         uses: peaceiris/actions-gh-pages@v3
