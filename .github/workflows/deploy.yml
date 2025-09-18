@@ -1,25 +1,24 @@
-name: 自动部署到服务器测试
-on:
+name: deploy_meta2d
+on: 
   push:
     branches:
-      - main
+      - mian
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: install nodejs
+        uses: actions/setup-node@2.5.1
         with:
-          node-version: 22.12.0
-      - run: npm install
-      - run: npm run build
-      # 部署到服务器（此步骤待测试）
-      - name: 部署到服务器
+          node-version: "22.12.0"
+      - name: install deps
+        run: npm install
+      - name: build app
+        run: npm run build
+      - name: DeploytoGithubpages
         uses: peaceiris/actions-gh-pages@v3
-        # 注入环境变量供ssh-deploy使用
-        env:
-          github_token: ${{ secrets.THEME_REPO_TOKEN }}
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
           publish_dir: ./dist
-
-
-      
+  
